@@ -3,6 +3,8 @@
 Self-hosted URL shortener with click analytics. Express on Node.js, SQLite through the built-in
 `node:sqlite` module (no native build step), and a small vanilla JavaScript frontend.
 
+![Screenshot](docs/screenshot.jpg)
+
 ## Features
 
 - Short links with random 7-character slugs or custom slugs, optional expiry
