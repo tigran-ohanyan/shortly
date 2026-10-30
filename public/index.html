@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>shortly — short links with stats</title>
+  <meta name="description" content="Self-hosted URL shortener with click analytics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%23f97316'/><path d='M26 38l12-12M22 30l-4 4a7 7 0 0 0 10 10l4-4M42 34l4-4a7 7 0 0 0-10-10l-4 4' stroke='white' stroke-width='5' fill='none' stroke-linecap='round'/></svg>">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/"><span class="mark"></span>shortly</a>
+    <nav><a href="#stats">Stats</a><a href="#recent">Recent</a><a href="https://github.com/tigran-ohanyan/shortly" target="_blank" rel="noopener">Source</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Short links that tell you <em>who clicked</em></h1>
+      <p class="muted">Paste a long URL, get a short one. Every click is counted with the day, referrer and browser.</p>
+      <form class="shorten" id="shorten-form" novalidate>
+        <div class="field-row">
+          <input type="url" id="url" name="url" placeholder="https://example.com/some/very/long/page?with=params" required autocomplete="off" autofocus>
+          <button class="btn" type="submit" id="shorten-btn">Shorten</button>
+        </div>
+        <details class="options">
+          <summary>Options</summary>
+          <div class="options-grid">
+            <label>Custom slug <input type="text" name="slug" placeholder="launch-2026" pattern="[A-Za-z0-9_-]{3,32}" autocomplete="off"></label>
+            <label>Expires in (days) <input type="number" name="expires_in_days" min="1" max="3650" placeholder="never"></label>
+            <label>API key (if the server needs one) <input type="password" name="api_key" autocomplete="off"></label>
+          </div>
+        </details>
+        <p class="error" id="form-error" role="alert"></p>
+      </form>
+
+      <div class="result" id="result" hidden>
+        <div class="result-main">
+          <a id="result-link" target="_blank" rel="noopener"></a>
+          <button class="btn btn-ghost" id="copy-btn">Copy</button>
+        </div>
+        <p class="muted small" id="result-meta"></p>
+      </div>
+    </section>
+
+    <section class="panel" id="stats">
+      <div class="panel-head">
+        <h2>Link stats</h2>
+        <form class="inline" id="stats-form"><input type="text" id="stats-slug" placeholder="slug, e.g. launch-2026" autocomplete="off"><button class="btn btn-ghost" type="submit">Look up</button></form>
+      </div>
+      <div id="stats-body" class="stats-body"><p class="muted">Create a link or enter a slug to see clicks per day, referrers and browsers.</p></div>
+    </section>
+
+    <section class="panel" id="recent">
+      <div class="panel-head"><h2>Recent links</h2><button class="btn btn-ghost small-btn" id="refresh-recent">Refresh</button></div>
+      <div class="table-wrap"><table class="table" id="recent-table"><thead><tr><th>Short</th><th>Destination</th><th class="num">Clicks</th><th>Created</th><th></th></tr></thead><tbody></tbody></table></div>
+      <p class="muted small" id="recent-note"></p>
+    </section>
+  </main>
+
+  <footer class="foot muted small">Self-hosted. Links and clicks stay in your own database.</footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/js/app.js"></script>
+</body>
+</html>
