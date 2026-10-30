@@ -1,0 +1,27 @@
+{
+  "name": "shortly",
+  "version": "0.1.0",
+  "description": "URL shortener with click analytics: Express, node:sqlite, vanilla JS frontend",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test",
+    "lint": "eslint ."
+  },
+  "engines": {
+    "node": ">=22.13"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "nanoid": "^5.0.8"
+  },
+  "devDependencies": {
+    "eslint": "^9.14.0",
+    "supertest": "^7.0.0"
+  }
+}
